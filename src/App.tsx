@@ -107,11 +107,11 @@ function App() {
         </div>
         <div className="h-full hidden md:block">
           <img
-            className="h-full"
+            style={{ width: "100%", minHeight: "100vh", objectFit: "cover" }}
             src="https://cdn.discordapp.com/attachments/1063230152827469944/1069415136407863358/hassan_dj_screensaver_wallpaper_white_background_hip_hop_graffi_24fa86af-10e2-44d8-91eb-73f6332b27c0.png"
           />
         </div>
-        <p className="text-xs font-mono mt-5 absolute bottom-2 left-2 text-left">
+        <p className="text-xs font-mono mt-5 absolute bottom-0 left-0 bg-white lg:bg-inherit w-full pl-2 pt-2 pb-2 text-left">
           <sup>*</sup>RSS feed and archive coming soon...
         </p>
       </div>
