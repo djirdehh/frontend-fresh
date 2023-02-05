@@ -12,6 +12,11 @@ function App() {
   const subscribe = async () => {
     try {
       setLoading(true);
+
+      if (email.trim() === "" || email == null) {
+        return setError("Your email address is required!");
+      }
+
       const res = await fetch("https://api.buttondown.email/v1/subscribers", {
         method: "POST",
         headers: {
@@ -51,28 +56,28 @@ function App() {
       <p className="text-lg font-mono mt-5 font-bold">
         Ready to go from zero to hero?
       </p>
-      <div className="flex flex-row mt-5">
+      <div className="flex flex-row flex-wrap space-x-0 space-y-4 justify-center md:flex-nowrap md:space-x-4 md:space-y-0 mt-5">
         <input
-          className="focus:ring-blue-500 focus:border-blue-500 shadow appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 font-mono text-gray-700 leading-tight focus:shadow-outline"
+          className="text-sm focus:ring-blue-500 focus:border-blue-500 shadow appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 font-mono text-gray-700 leading-tight focus:shadow-outline"
           value={name}
           onChange={(e) => setName(e.target.value)}
           id="name"
           type="text"
-          placeholder="First name"
+          placeholder="First name (optional)"
           disabled={loading}
         />
         <input
-          className="ml-2 focus:ring-blue-500 focus:border-blue-500 shadow appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 font-mono text-gray-700 leading-tight focus:shadow-outline"
+          className="text-sm focus:ring-blue-500 focus:border-blue-500 shadow appearance-none border border-gray-300 rounded-lg w-full py-2 px-3 font-mono text-gray-700 leading-tight focus:shadow-outline"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           id="email"
           type="email"
-          placeholder="Email address"
+          placeholder="Email address (required)"
           disabled={loading}
         />
         <button
-          disabled={name == null || email == null || loading}
-          className="px-3 ml-2 font-mono tracking-tighter font-semibold bg-black text-white rounded-lg shadow-sm h-10 disabled:opacity-25"
+          disabled={email.trim() === "" || email == null || loading}
+          className="px-3 text-sm font-mono tracking-tighter font-semibold bg-black text-white rounded-lg shadow-sm h-10 disabled:opacity-25"
           onClick={subscribe}
         >
           {loading ? "Subscribing..." : "Subscribe"}
