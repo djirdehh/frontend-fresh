@@ -1,1 +1,1 @@
-# tinyhouse-challenges
+# Landing Page for the Front-end Fresh Newsletter
