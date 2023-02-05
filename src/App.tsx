@@ -37,6 +37,7 @@ function App() {
       }
 
       setUserSubscribed(true);
+      setError(undefined);
     } catch (err) {
       console.log(err);
       setError(
