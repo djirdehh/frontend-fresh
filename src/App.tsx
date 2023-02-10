@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 
@@ -8,6 +8,33 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<undefined | string>(undefined);
   const [userSubscribed, setUserSubscribed] = useState(false);
+  const [subscribersCount, setSubscribersCount] = useState<number | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    const fetchSubscribersCount = async () => {
+      if (subscribersCount == null) {
+        const res = await fetch("https://api.buttondown.email/v1/subscribers", {
+          headers: {
+            Authorization: `Token ${import.meta.env.VITE_BUTTONDOWN_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!res.ok) {
+          return;
+        }
+
+        const data = await res.json();
+        const subscriberCount = data.count;
+
+        setSubscribersCount(subscriberCount);
+      }
+    };
+
+    fetchSubscribersCount();
+  }, []);
 
   const subscribe = async () => {
     try {
@@ -55,7 +82,9 @@ function App() {
         projects for beginner to intermediate web developers.
       </p>
       <p className="text-lg font-mono mt-5 font-bold">
-        Ready to go from zero to hero?
+        {subscribersCount
+          ? `Join ${subscribersCount} other subscribers and go from zero to hero!`
+          : "Ready to go from zero to hero?"}
       </p>
       <div className="flex flex-row flex-wrap space-x-0 space-y-4 justify-center md:flex-nowrap md:space-x-4 md:space-y-0 mt-5">
         <input
