@@ -117,7 +117,9 @@ function App() {
       <div className="flex flex-row flex-wrap space-x-0 space-y-4 justify-center md:flex-nowrap md:space-x-4 md:space-y-0 mt-5">
         {subscribersCount ? (
           <p className="text-md font-mono font-bold">
-            💌 Join {nf.format(subscribersCount)}+ front-end engineers
+            💌 Join{" "}
+            <span className="text-red-500">{nf.format(subscribersCount)}+</span>{" "}
+            front-end engineers
           </p>
         ) : (
           <p className="text-md font-mono font-bold">&nbsp;</p>
