@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import logo from "./assets/logo.png";
 
+const nf = new Intl.NumberFormat();
+
 function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -81,10 +83,8 @@ function App() {
         A weekly newsletter of front-end engineering tips, tutorials, and
         projects for beginner to intermediate web developers.
       </p>
-      <p className="text-lg font-mono mt-5 font-bold">
-        {subscribersCount
-          ? `Join ${subscribersCount} other subscribers and go from zero to hero!`
-          : "Ready to go from zero to hero?"}
+      <p className="text-lg font-mono font-medium mt-5">
+        Ready to go from zero to hero?
       </p>
       <div className="flex flex-row flex-wrap space-x-0 space-y-4 justify-center md:flex-nowrap md:space-x-4 md:space-y-0 mt-5">
         <input
@@ -112,6 +112,16 @@ function App() {
         >
           {loading ? "Subscribing..." : "Subscribe"}
         </button>
+      </div>
+
+      <div className="flex flex-row flex-wrap space-x-0 space-y-4 justify-center md:flex-nowrap md:space-x-4 md:space-y-0 mt-5">
+        {subscribersCount ? (
+          <p className="text-md font-mono font-bold">
+            💌 Join {nf.format(subscribersCount)}+ front-end engineers
+          </p>
+        ) : (
+          <p className="text-md font-mono font-bold">&nbsp;</p>
+        )}
       </div>
     </>
   ) : (
@@ -146,9 +156,15 @@ function App() {
             src="https://cdn.discordapp.com/attachments/1063230152827469944/1069415136407863358/hassan_dj_screensaver_wallpaper_white_background_hip_hop_graffi_24fa86af-10e2-44d8-91eb-73f6332b27c0.png"
           />
         </div>
-        <p className="text-xs font-mono mt-5 fixed bottom-0 left-0 bg-white lg:bg-inherit w-full pl-2 pt-2 pb-2 text-left">
-          <sup>*</sup>RSS feed and archive coming soon...
-        </p>
+        <div className="fixed bottom-0 left-0 bg-white lg:bg-inherit w-full pl-2 pt-2 pb-2 text-left">
+          <a
+            href="https://buttondown.email/frontendfresh/rss"
+            className="text-xs font-mono font-bold underline"
+            target="_blank"
+          >
+            RSS Feed
+          </a>
+        </div>
       </div>
     </div>
   );
