@@ -161,10 +161,17 @@ function App() {
         <div className="fixed bottom-0 left-0 bg-white lg:bg-inherit w-full pl-2 pt-2 pb-2 text-left">
           <a
             href="https://buttondown.email/frontendfresh/rss"
-            className="text-xs font-mono font-bold underline"
+            className="text-xs font-mono font-bold underline mr-3"
             target="_blank"
           >
             RSS Feed
+          </a>
+          <a
+            href="https://newsletter.frontendfresh.com/archive/"
+            className="text-xs font-mono font-bold underline"
+            target="_blank"
+          >
+            Archive
           </a>
         </div>
       </div>
